@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I'm Sorry 💛</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, #4b390d, #17130a 75%);
+  color: #ffe68a;
+  font-family: Georgia, serif;
+  text-align: center;
+}
+
+.scene {
+  padding: 25px;
+  animation: entrance 2.5s ease forwards;
+  z-index: 2;
+}
+
+.small {
+  font-size: 12px;
+  letter-spacing: 7px;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fade 2s ease 1s forwards;
+}
+
+h1 {
+  font-size: clamp(48px, 12vw, 95px);
+  margin: 28px 0;
+  text-shadow: 0 0 30px #ffca3a55;
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+.message {
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: #fff3c4;
+  opacity: 0;
+  animation: fade 2s ease 2.5s forwards;
+}
+
+button {
+  margin-top: 38px;
+  padding: 15px 30px;
+  border: 1px solid #ffe68a;
+  border-radius: 40px;
+  background: transparent;
+  color: #ffe68a;
+  font-size: 14px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  opacity: 0;
+  animation: fade 2s ease 4s forwards;
+  transition: .3s;
+}
+
+button:hover {
+  background: #ffe68a;
+  color: #211a08;
+  box-shadow: 0 0 30px #ffe68a66;
+}
+
+#extra {
+  display: none;
+  margin-top: 25px;
+  font-size: 17px;
+  line-height: 1.8;
+  color: #fff5d5;
+  animation: fade 2s ease forwards;
+}
+
+.petal {
+  position: absolute;
+  top: -30px;
+  color: #ffdf75;
+  opacity: .7;
+  pointer-events: none;
+  animation: fall linear forwards;
+}
+
+.light {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #fff0b0;
+  box-shadow: 0 0 12px #ffdf75;
+  animation: twinkle 3s infinite alternate;
+}
+
+@keyframes entrance {
+  from { opacity: 0; transform: scale(1.15); filter: blur(10px); }
+  to { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #ffca3a22; }
+  to { text-shadow: 0 0 35px #ffca3a88; }
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes twinkle {
+  from { opacity: .2; }
+  to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="sky"></div>
+
+<main class="scene">
+  <div class="small">There is something I need to say</div>
+
+  <h1>I'm Sorry<span style="color:#fff0b5">...</span> 💛</h1>
+
+  <p class="message">
+    Some words are hard to say.<br>
+    But this one matters.
+  </p>
+
+  <button onclick="reveal()">PLEASE, READ THIS</button>
+
+  <div id="extra">
+    I'm sorry. 💛<br>
+   okay na to (inaantok nako)<br>
+    but I truly mean them.
+  </div>
+</main>
+
+<script>
+const sky = document.getElementById("sky");
+
+for (let i = 0; i < 65; i++) {
+  const light = document.createElement("div");
+  light.className = "light";
+  light.style.left = Math.random() * 100 + "vw";
+  light.style.top = Math.random() * 100 + "vh";
+  light.style.animationDelay = Math.random() * 3 + "s";
+  sky.appendChild(light);
+}
+
+function makePetal() {
+  const petal = document.createElement("div");
+  petal.className = "petal";
+  petal.textContent = Math.random() > .5 ? "✦" : "✧";
+  petal.style.left = Math.random() * 100 + "vw";
+  petal.style.fontSize = (12 + Math.random() * 22) + "px";
+  petal.style.animationDuration = (5 + Math.random() * 7) + "s";
+  document.body.appendChild(petal);
+
+  setTimeout(() => petal.remove(), 12000);
+}
+
+setInterval(makePetal, 350);
+
+function reveal() {
+  const extra = document.getElementById("extra");
+  extra.style.display = "block";
+  document.querySelector("button").style.display = "none";
+}
+</script>
+
+</body>
+</html>
